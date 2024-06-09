@@ -165,12 +165,12 @@ export const BottomSheet = React.forwardRef<
             velocity,
             ...config,
             // @see https://springs.pomb.us
-            mass: 1,
+            mass: 0.01,
             // "stiffness"
-            tension,
+            tension : 700,
             // "damping"
             friction: Math.max(
-              friction,
+              15,
               friction + (friction - friction * velocity)
             ),
           },
