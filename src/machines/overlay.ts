@@ -78,24 +78,22 @@ interface OverlayStateSchema {
   }
 }
 
-type OverlayEvent =
-  | { type: 'OPEN' }
-  | {
-      type: 'SNAP'
-      payload: {
-        y: number
-        velocity: number
-        source: 'dragging' | 'custom' | string
-      }
-    }
-  | { type: 'CLOSE' }
-  | { type: 'DRAG' }
-  | { type: 'RESIZE' }
+type OverlayEvent = any
+  // | { type: 'OPEN' }
+  // | {
+  //     type: 'SNAP'
+  //     payload: {
+  //       y: number
+  //       velocity: number
+  //       source: 'dragging' | 'custom' | string
+  //     }
+  //   }
+  // | { type: 'CLOSE' }
+  // | { type: 'DRAG' }
+  // | { type: 'RESIZE' }
 
 // The context (extended state) of the machine
-interface OverlayContext {
-  initialState: 'OPEN' | 'CLOSED'
-}
+type OverlayContext = any
 function sleep(ms = 1000) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
@@ -195,7 +193,6 @@ export const overlayMachine = Machine<
             },
             entry: [
               assign({
-                // @ts-expect-error
                 y: (_, { payload: { y } }) => y,
                 velocity: (_, { payload: { velocity } }) => velocity,
                 snapSource: (_, { payload: { source = 'custom' } }) => source,
